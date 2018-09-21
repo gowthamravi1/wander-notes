@@ -1,0 +1,20 @@
+spring.datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.17.0.2:3306/wander_notes?useSSL=false
+    username: root
+    password: root
+spring.jpa:
+        # Specify the DBMS
+        # database: h2
+        # Show or not log for each sql query
+        show-sql: false
+        # Hibernate settings are prefixed with spring.jpa.hibernate.*
+        hibernate:
+            ddl-auto: validate # validate | update | create | create-drop
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            show_sql: true 
+            format_sql: true
+flyway:
+  enabled: true
+  initOnMigrate: true

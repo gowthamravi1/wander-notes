@@ -25,11 +25,10 @@ import org.hibernate.validator.constraints.Length;
 public class Notes extends AuditModel {
 	
 		@Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "note_id")
-	    private Integer id;
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 		
-		@Column(name = "title")
+		@Column(columnDefinition = "TEXT")
 		@Length(min = 5, message = "*Your title must have at least 5 characters")
 	    @NotEmpty(message = "*Please provide your title")
 		private String title;

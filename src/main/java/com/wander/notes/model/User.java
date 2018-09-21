@@ -8,21 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
+import lombok.Data;
+
 
 /**
  * The user model
  *
  */
+@Data
 @Entity
-@Table(name = "user")
+@Table(name = "auth_user")
 public class User {
 
 	    @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    @Column(name = "user_id")
-	    private Integer id;
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 	    
 	    @Column(name = "email", unique=true)
 	    @Email(message = "*Please provide a valid Email")
@@ -37,5 +38,6 @@ public class User {
 	    @Column(name = "name")
 	    @NotEmpty(message = "*Please provide your name")
 	    private String name;
-	
+	    
+	    
 }
