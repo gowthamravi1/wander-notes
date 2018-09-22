@@ -1,6 +1,6 @@
 spring.datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.17.0.2:3306/wander_notes?useSSL=false
+    url: jdbc:mysql://localhost:3306/wander_notes?useSSL=false
     username: root
     password: root
 spring.jpa:

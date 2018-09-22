@@ -1,4 +1,4 @@
-package com.wander.notes;
+package com.wander.notes.configuration;
 
 import javax.sql.DataSource;
 
@@ -28,7 +28,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.jdbcAuthentication()
-        		.usersByUsernameQuery("SELECT username, password, enabled FROM auth_user WHERE username=?")
+        		.usersByUsernameQuery("SELECT username, password FROM auth_user WHERE username=?")
 //                .authoritiesByUsernameQuery(rolesQuery) # we can add user roles if any
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
@@ -40,7 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
         	.antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
-            .antMatchers("/registration").permitAll()
+            .antMatchers("/signup").permitAll()
             .antMatchers("/notes/**").authenticated().anyRequest()
             .authenticated().and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")
