@@ -12,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         value = {"createdAt", "updatedAt"},
         allowGetters = true
 )
+@Data
 public abstract class AuditModel implements Serializable {
 
 	
@@ -30,33 +33,5 @@ public abstract class AuditModel implements Serializable {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    @Column(name = "updated_at", nullable = false)
 	    @LastModifiedDate
-	    private Date updatedAt;
-
-		/**
-		 * @return the createdAt
-		 */
-		public Date getCreatedAt() {
-			return createdAt;
-		}
-
-		/**
-		 * @param createdAt the createdAt to set
-		 */
-		public void setCreatedAt(Date createdAt) {
-			this.createdAt = createdAt;
-		}
-
-		/**
-		 * @return the updatedAt
-		 */
-		public Date getUpdatedAt() {
-			return updatedAt;
-		}
-
-		/**
-		 * @param updatedAt the updatedAt to set
-		 */
-		public void setUpdatedAt(Date updatedAt) {
-			this.updatedAt = updatedAt;
-		}	    
+	    private Date updatedAt;  
 }

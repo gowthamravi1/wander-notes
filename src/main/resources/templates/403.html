@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>wander-Notes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+	img {
+	    display: block;
+	    margin: auto;
+	    padding-top: 6%;
+	}
+	
+	.error-actions {
+	    margin-top: 15px;
+	    margin-bottom: 15px;
+	}
+	</style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>Oops!</h1>
+                    <div class="error-details">Sorry, you are not authorized!</div>
+                    <div class="error-actions">
+                        <a th:href="@{/notes}" href="#" class="btn btn-primary btn-lg"><span
+                            class="glyphicon glyphicon-home"></span> back to home </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

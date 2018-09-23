@@ -12,13 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wander.notes.model.User;
 import com.wander.notes.service.UserService;
 
-@RestController(value="/signup")
+@RestController
 public class RegistrationController {
 	
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/signup", method = RequestMethod.GET)
 	public ModelAndView registration(){
 	    ModelAndView modelAndView = new ModelAndView();
 	    User user = new User();
@@ -27,7 +27,7 @@ public class RegistrationController {
 	    return modelAndView;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/signup", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 	    ModelAndView modelAndView = new ModelAndView();
 	    User userExists = userService.findUserByEmail(user.getEmail());

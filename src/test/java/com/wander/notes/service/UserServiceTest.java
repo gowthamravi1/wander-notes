@@ -2,11 +2,15 @@ package com.wander.notes.service;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.wander.notes.model.User;
+import com.wander.notes.repository.RoleRepository;
 import com.wander.notes.repository.UserRepository;
 
 import static org.junit.Assert.assertEquals;
@@ -14,10 +18,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 public class UserServiceTest {
 
     @Mock
     private UserRepository mockUserRepository;
+    
+    @Mock
+    private RoleRepository mockRoleRepository;
 
     @Mock
     private BCryptPasswordEncoder mockBCryptPasswordEncoder;
@@ -28,10 +37,10 @@ public class UserServiceTest {
     @Before
     public void setUp() {
         initMocks(this);
-        userServiceUnderTest = new UserService(mockUserRepository, mockBCryptPasswordEncoder);
+        userServiceUnderTest = new UserService(mockUserRepository, mockBCryptPasswordEncoder, mockRoleRepository);
         user = User.builder()
                 .id((long) 1)
-                .name("Gustavo")
+                .name("test")
                 .email("test@test.com")
                 .build();
 

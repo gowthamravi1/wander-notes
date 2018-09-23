@@ -28,8 +28,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.jdbcAuthentication()
-        		.usersByUsernameQuery("SELECT username, password FROM auth_user WHERE username=?")
-//                .authoritiesByUsernameQuery(rolesQuery) # we can add user roles if any
+        		.usersByUsernameQuery("select email, password, enabled from auth_user where email=?")
+                .authoritiesByUsernameQuery(
+                		"select u.email, r.role from auth_user u inner join user_role ur on(u.id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?"
+                		)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
@@ -41,7 +43,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         	.antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/signup").permitAll()
-            .antMatchers("/notes/**").authenticated().anyRequest()
+            .antMatchers("/notes/**").hasAuthority("USER").anyRequest()
             .authenticated().and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")
             .defaultSuccessUrl("/notes/")

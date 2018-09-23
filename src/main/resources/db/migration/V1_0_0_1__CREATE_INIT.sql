@@ -5,6 +5,8 @@ CREATE TABLE auth_user
   name varchar(50) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
+  role_name varchar(255) NOT NULL,
+  enabled TINYINT(1) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE(email)
 );

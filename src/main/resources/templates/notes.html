@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>wander-Notes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+</head>
+<body>
+<div class="container">
+	
+	<div th:if="${successMessage}" class="alert alert-success">
+	  <strong>Success!</strong> <span class="text-success" th:utext="${successMessage}"></span>
+	</div>	
+
+	<div class="col-md-4">
+		<h1>Notes</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
+    
+    <div style="padding:0 20px">
+    <table class="table table-striped">
+	    <thead>
+	       <tr>
+	           <th>Id</th>
+	           <th>Title</th>
+	           <th>Actions</th>
+	       </tr>
+	     </thead>
+	    <tbody>
+	         <tr th:each="notes : ${notesList}">
+	             <td th:text="${notes.id}">1</td>
+	             <td th:text="${notes.title}">Test</td>
+	             
+	             <td>
+	                 <a href="#" th:href="@{/notes/__${notes.id}__}">Edit</a>
+	                 <a href="#" th:href="@{/notes/delete/__${notes.id}__}">Delete</a>
+	             </td>
+	         </tr>
+	    </tbody>
+    </table>
+    <a href="/notes/new" class="btn btn-primary">Add Notes</a>
+	</div>    
+</div>
+</body>
+</html>

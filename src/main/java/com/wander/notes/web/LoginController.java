@@ -14,4 +14,18 @@ public class LoginController {
 	    modelAndView.setViewName("login");
 	    return modelAndView;
 	}
+	
+	/**
+     * Render the forbidden page.
+     *
+     * @return modelandview instance.
+     */
+    @RequestMapping("/auth/error")
+    public ModelAndView error() {
+        ModelAndView mav = new ModelAndView();
+        String errorMessage = "You are not authorized for the requested data.";
+        mav.addObject("errorMsg", errorMessage);
+        mav.setViewName("403");
+        return mav;
+    }
 }

@@ -1,20 +1,29 @@
+spring.thymeleaf.mode: HTML
+spring.thymeleaf.cache: false
+#logging.level.root: DEBUG
+
+---
+#spring:
+#  profiles: default, dev, ci, qa, production, test
 spring.datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/wander_notes?useSSL=false
     username: root
     password: root
+    initialization-mode: always
 spring.jpa:
-        # Specify the DBMS
-        # database: h2
-        # Show or not log for each sql query
-        show-sql: false
-        # Hibernate settings are prefixed with spring.jpa.hibernate.*
-        hibernate:
-            ddl-auto: validate # validate | update | create | create-drop
-            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
-            show_sql: true 
-            format_sql: true
+    # Specify the DBMS
+    # database: h2
+    # Show or not log for each sql query
+    show-sql: false
+    # Hibernate settings are prefixed with spring.jpa.hibernate.*
+    hibernate:
+        ddl-auto: update # validate | update | create | create-drop
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        show_sql: true 
+        format_sql: true
 flyway:
-  enabled: true
-  initOnMigrate: true
+  enabled: false
+  initOnMigrate: false
+---

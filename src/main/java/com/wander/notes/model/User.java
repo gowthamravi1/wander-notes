@@ -1,15 +1,20 @@
 package com.wander.notes.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,5 +51,10 @@ public class User {
 	    @NotEmpty(message = "*Please provide your name")
 	    private String name;
 	    
+	    @Column(name = "enabled")
+	    private Boolean enabled;
 	    
+	    @ManyToMany(cascade = CascadeType.ALL)
+	    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	    private Set<Role> roles;
 }
