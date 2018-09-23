@@ -1,15 +1,15 @@
 spring.thymeleaf.mode: HTML
 spring.thymeleaf.cache: false
-#logging.level.root: DEBUG
+logging.level.root: ${LOGGING_LEVEL:INFO}
 
 ---
 #spring:
 #  profiles: default, dev, ci, qa, production, test
 spring.datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/wander_notes?useSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://localhost:3306/${DB_NAME:wander_notes}?useSSL=false
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
     initialization-mode: always
 spring.jpa:
     # Specify the DBMS
