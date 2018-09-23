@@ -3,8 +3,8 @@ spring.thymeleaf.cache: false
 logging.level.root: ${LOGGING_LEVEL:INFO}
 
 ---
-#spring:
-#  profiles: default, dev, ci, qa, production, test
+spring:
+  profiles: default, dev, ci, qa, production
 spring.datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/${DB_NAME:wander_notes}?useSSL=false
@@ -27,3 +27,23 @@ flyway:
   enabled: false
   initOnMigrate: false
 ---
+
+##This profile include in memory database configuration with disabled flyway.
+spring:
+  profiles: test
+spring.datasource:
+    driverClassName: org.h2.Driver
+    #TODO: create local database path for test environment.
+    url: jdbc:h2:mem:dcp_test;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
+spring.jpa:
+    hibernate:
+        ddl-auto: create-drop
+        dialect: org.hibernate.dialect.H2Dialect
+        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        show_sql: false
+        format_sql: true
+flyway:
+  enabled: false
+  initOnMigrate: false        
