@@ -7,7 +7,7 @@ spring:
   profiles: default, dev, ci, qa, production
 spring.datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/${DB_NAME:wander_notes}?useSSL=false
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:wander_notes}?useSSL=false
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     initialization-mode: always
