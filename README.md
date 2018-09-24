@@ -1,5 +1,16 @@
 # wander-notes
 
+
+# How to run the project
+
+1) Install Java and docker
+
+2) Configure Mysql and create database "create database wander_notes" 
+
+3) ./gradlew bootRun
+
+4) ./gradlew test (for running test)
+
 # How to run in docker 
 
 1) Install Java and docker
