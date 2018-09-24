@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,6 +31,7 @@ import com.wander.notes.NotesApplication;
 @WebAppConfiguration
 @SpringBootTest(classes = NotesApplication.class)
 @ActiveProfiles("test")
+@AutoConfigureMockMvc
 public class LoginControllerTest {
 	
 	private MockMvc mockMvc;
