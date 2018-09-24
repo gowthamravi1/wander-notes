@@ -1,6 +1,6 @@
 # wander-notes
 
-# How to run in docker
+# How to run in docker 
 
 1) Install Java and docker
 
